@@ -1,19 +1,16 @@
 <?php
 
-class BankAccount
+class BankAccount 
 {
-
-public function getBalance() {
+    public function getBalance() {
 	return 0;
-}
-public function withdrawMoney($money) {
+    }
 
- return $money;
+    public function withdrawMoney($money) {
+        return $money;
+    }
 
-}
-
-public function addMoney($money) {
- return true;
-}
-
+    public function addMoney($money) {
+        return true;
+    }
 }
