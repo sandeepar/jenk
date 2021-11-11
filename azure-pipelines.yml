@@ -8,16 +8,6 @@ jobs:
       SourceFolder: '$(System.DefaultWorkingDirectory)'
       Contents: '*'
       TargetFolder: '/mnt/php'
-  - upload: $(Build.ArtifactStagingDirectory)
+  - upload: /mnt/php
     artifact: drop
-  
-- deployment: VMDeploy
-  displayName: web
-  environment:
-    name: testing machine
-    resourceType: VirtualMachine
-  strategy:
-    runOnce:
-      deploy:
-        steps:
-        - script: echo my first deployment
+
