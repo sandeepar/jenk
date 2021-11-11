@@ -10,4 +10,22 @@ jobs:
       TargetFolder: '/mnt/php'
   - upload: /mnt/php
     artifact: drop
-
+  
+- deployment: VMDeploy
+  displayName: web
+  environment:
+    name: testing machine
+    resourceType: VirtualMachine
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+        - task: CopyFiles@2
+          displayName: 'Copy files to VM'
+          inputs:
+           SourceFolder: '$(System.DefaultWorkingDirectory)'
+           Contents: '*'
+           TargetFolder: '/mnt/php'
+        - upload: /mnt/php
+          artifact: drop
+        - script: echo my first deployment
