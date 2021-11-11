@@ -1,0 +1,44 @@
+version: '3.7'
+
+volumes:
+    data: {}
+
+services:
+    java_web:
+        image: qgrid.azurecr.io/java_web:latest_${build}
+        user: root
+        container_name: qgrid_java_web
+        network_mode: host
+        volumes:
+            - /mnt/qgrid/logs:/mnt/qgrid/logs
+            - /mnt/qgrid/output_files:/mnt/qgrid/profileroutput
+            - /mnt/qgrid/input_files:/mnt/qgrid/input_files
+            - /mnt/qgrid/configs:/mnt/qgrid/configs
+        command: bash -c "java -jar -Xmx512m -DUhome=/mnt/qgrid/ -Dserver.port=9000 qengine-0.0.1-SNAPSHOT.jar"
+        working_dir: /mnt
+        expose:
+            - 9000
+        environment:
+            deploy_mode: stage
+        #ports:
+        #- "9001:9001"
+#       deploy:
+#           resources:
+#               limits:
+#                 memory: 128M
+#               reservations:
+#                 memory: 100M
+
+            #restart: unless-stopped
+              
+    ignite:
+        image: apacheignite/ignite:2.10.0
+        #user: root
+        container_name: ignite
+        #command: /bin/sh -c  "/mnt/apache-ignite-2.10.0-bin/bin/ignite.sh /mnt/apache-ignite-2.10.0-bin/examples/config/example-ignite.xml"
+        working_dir: /mnt
+        ports:
+            - "11211:11211"
+            - "47500-47509:47500-47509"
+            - "10800:10800"
+        restart: unless-stopped
