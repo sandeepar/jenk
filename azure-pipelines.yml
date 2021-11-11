@@ -12,7 +12,7 @@ jobs:
   - upload: /mnt/php
     artifact: drop
 
-- deployment: VMDeploy
+- deployment: VMDeplo
   displayName: web
   environment:
     name: testing machine
@@ -21,12 +21,12 @@ jobs:
     runOnce:
       deploy:
         steps:
-        - task: CopyFiles@1
+        - task: CopyFiles@2
           displayName: 'Copy files to VM'
           inputs:
-           SourceFolder: '$(System.DefaultWorkingDirectory)'
-           Contents: '*'
-           TargetFolder: '/mnt/php'
+            SourceFolder: '$(System.DefaultWorkingDirectory)'
+            Contents: '*'
+            TargetFolder: '/mnt/php'
         - upload: /mnt/php
           artifact: drop
         - script: echo my first deployment
