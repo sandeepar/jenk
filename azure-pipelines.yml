@@ -13,8 +13,6 @@ jobs:
   
 - deployment: VMDeploy
   displayName: web
-  pool:
-    vmImage: 'ubuntu-latest'
   environment:
     name: testing machine
     resourceType: VirtualMachine
