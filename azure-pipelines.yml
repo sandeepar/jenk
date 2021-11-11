@@ -1,13 +1,24 @@
 jobs:
+- job: Build
+  displayName: Build HTML Project
+  steps:
+  - task: CopyFiles@2
+    displayName: 'Copy Files to artifact staging directory'
+    inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: '*'
+        TargetFolder: $(Build.ArtifactStagingDirectory)
+  - upload: $(Build.ArtifactStagingDirectory)
+    artifact: drop
+  
+jobs:
 - deployment: VMDeploy
   displayName: web
-  pool:
-    vmImage: 'ubuntu-latest'
   environment:
     name: testing machine
     resourceType: VirtualMachine
-  strategy:
-    runOnce:
-      deploy:
-        steps:
-        - script: echo my first deployment
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo my first deployment
