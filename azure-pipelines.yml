@@ -11,8 +11,7 @@ jobs:
       TargetFolder: '/mnt/php'
   - upload: /mnt/php
     artifact: drop
-    
-- job: Build   
+
 - deployment: VMDeploy
   displayName: web
   environment:
