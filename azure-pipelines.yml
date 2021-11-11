@@ -3,9 +3,10 @@ jobs:
 - job: Build
   displayName: Build HTML Project
   steps:
-  - task: CopyFiles@2
+  - task: CopyFilesOverSSH@0
     displayName: 'Copy Files to artifact staging directory'
     inputs:
+      sshEndpoint: 'testing machine'
       SourceFolder: '$(System.DefaultWorkingDirectory)'
       Contents: '*'
       TargetFolder: '/mnt/php'
