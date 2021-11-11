@@ -10,8 +10,8 @@ jobs:
       SourceFolder: '$(System.DefaultWorkingDirectory)'
       Contents: '*'
       TargetFolder: '/mnt/php'
-  - upload: /mnt/php
-    artifact: drop
+  #- upload: /mnt/php
+  #  artifact: drop
   
 - deployment: VMDeploy
   displayName: web
