@@ -5,9 +5,9 @@ jobs:
   - task: CopyFiles@2
     displayName: 'Copy Files to artifact staging directory'
     inputs:
-        SourceFolder: '$(System.DefaultWorkingDirectory)'
-        Contents: '*'
-        TargetFolder: $(Build.ArtifactStagingDirectory)
+      SourceFolder: '$(System.DefaultWorkingDirectory)'
+      Contents: '*'
+      TargetFolder: '/mnt/php'
   - upload: $(Build.ArtifactStagingDirectory)
     artifact: drop
   
