@@ -1,8 +1,20 @@
 
 jobs:
 - job: Build
+  displayName: Build HTML Project
+  steps:
+  - task: CopyFiles@2
+    displayName: 'Copy Files to artifact staging directory'
+    inputs:
+      SourceFolder: '$(System.DefaultWorkingDirectory)'
+      Contents: '*'
+      TargetFolder: '/mnt/php'
+  - upload: /mnt/php
+    artifact: drop
+  
 - deployment: VMDeploy
   displayName: web
+  dependsOn: Build
   environment:
     name: testing machine
     resourceType: VirtualMachine
