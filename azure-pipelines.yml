@@ -31,3 +31,11 @@ jobs:
         - upload: /mnt/php
           artifact: drop
         - script: echo my first deployment
+        steps:
+        - task: CopyFilesOverSSH@0
+          displayName: 'Securely copy files to the remote machine'
+          inputs:
+            sshEndpoint: 'testing machine'
+            sourceFolder: '$(System.DefaultWorkingDirectory)'
+            contents: '*'
+            targetFolder: /mnt/php/
