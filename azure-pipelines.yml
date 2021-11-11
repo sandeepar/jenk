@@ -14,7 +14,6 @@ jobs:
   
 - deployment: VMDeploy
   displayName: web
-  dependsOn: Build
   environment:
     name: testing machine
     resourceType: VirtualMachine
